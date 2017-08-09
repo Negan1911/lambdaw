@@ -1,6 +1,6 @@
 {
   "name": "lambdaw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Group of Helpers for Common AWS Lamdba uses Edit",
   "main": "index.js",
   "engines": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Negan1911/lambda-ch.git"
+    "url": "git+https://github.com/Negan1911/lambdaw.git"
   },
   "keywords": [
     "Lambda",
