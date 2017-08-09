@@ -7,6 +7,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "doc": "docker -x *.spec.js -c Monokai src/**/*.js",
     "test": "jest"
   },
   "lint-staged": {
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/Negan1911/lambda-ch#readme",
   "devDependencies": {
     "chai": "^4.1.0",
+    "docker": "^1.0.0",
     "eslint": "^4.3.0",
     "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-node": "^5.1.1",
