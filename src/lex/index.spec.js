@@ -1,4 +1,3 @@
-const { isEqual } = require('lodash')
 const { expect } = require('chai')
 const LexResponse = require('.')
 const GenericAttachments = require('./genericAttachments')
@@ -10,7 +9,7 @@ describe('Lex Helpers', () => {
 
   describe('Attachments', () => {
     it('Should be able to get the attachments within the main class', () => {
-      expect(isEqual(LexResponse.Attachments, GenericAttachments)).to.be.true
+      expect(LexResponse.Attachments).to.be.deep.equal(GenericAttachments)
     })
   })
 

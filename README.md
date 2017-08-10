@@ -1,5 +1,11 @@
 # lambda-ch
 
+[![Build Status](https://travis-ci.org/Negan1911/lambdaw.svg?branch=master)](https://travis-ci.org/Negan1911/lambdaw)
+
+[![codecov](https://codecov.io/gh/Negan1911/lambdaw/branch/master/graph/badge.svg)](https://codecov.io/gh/Negan1911/lambdaw)
+
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 This is what the AWS SDK should had, there is no point on manually creating
 JSON object to pass through the callback when you can use a library that will
 ensure that you know what are using (it has JSDoc) and is battle-tested.
