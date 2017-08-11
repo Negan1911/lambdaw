@@ -1,4 +1,4 @@
-const lambdaw = require('../')
+const lambdaw = require('.')
 const { expect } = require('chai')
 
 describe('Entry Point Test', () => {

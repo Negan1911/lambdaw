@@ -1,6 +1,6 @@
 {
   "name": "lambdaw",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Group of Helpers for Common AWS Lamdba uses Edit",
   "main": "index.js",
   "engines": {
