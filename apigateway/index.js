@@ -8,7 +8,7 @@ module.exports = class Response {
     this.headers = {}
 
     if (body) {
-      this.body = body
+      this.WithBody(body)
     }
   }
 
@@ -48,6 +48,11 @@ module.exports = class Response {
    */
   WithBody(body) {
     this.body = body
+
+    if (typeof body === 'object') {
+      this.WithHeader('Content-Type', 'application/json')
+    }
+
     return this
   }
 
