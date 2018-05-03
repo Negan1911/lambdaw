@@ -1,4 +1,3 @@
-const { expect } = require('chai')
 const LexResponse = require('.')
 const GenericAttachments = require('./genericAttachments')
 
@@ -9,7 +8,7 @@ describe('Lex Helpers', () => {
 
   describe('Attachments', () => {
     it('Should be able to get the attachments within the main class', () => {
-      expect(LexResponse.Attachments).to.be.deep.equal(GenericAttachments)
+      expect(LexResponse.Attachments).toEqual(GenericAttachments)
     })
   })
 
@@ -20,8 +19,8 @@ describe('Lex Helpers', () => {
       }
       const _req = new LexResponse(e)
 
-      expect(_req).to.have.property('slots', e.currentIntent.slots)
-      expect(_req).to.have.property('intentName', e.currentIntent.name)
+      expect(_req).toHaveProperty('slots', e.currentIntent.slots)
+      expect(_req).toHaveProperty('intentName', e.currentIntent.name)
     })
 
     it('Should default sessionAttributes to an object', () => {
@@ -29,8 +28,8 @@ describe('Lex Helpers', () => {
         currentIntent: { slots: { fake: 'fake' }, name: 'test1' }
       }
       const _req = new LexResponse(e)
-      expect(_req.sessionAttributes).to.be.an('object')
-      expect(Object.keys(_req.sessionAttributes).length).to.eq(0)
+      expect(_req).toHaveProperty('sessionAttributes')
+      expect(Object.keys(_req.sessionAttributes).length).toBe(0)
     })
 
     it('Should take sessionAttributes from the event', () => {
@@ -39,8 +38,8 @@ describe('Lex Helpers', () => {
         currentIntent: { slots: { fake: 'fake' }, name: 'test1' }
       }
       const _req = new LexResponse(e)
-      expect(_req.sessionAttributes).to.be.an('object')
-      expect(_req.sessionAttributes).to.have.property('test', 'test')
+      expect(_req).toHaveProperty('sessionAttributes')
+      expect(_req.sessionAttributes).toHaveProperty('test', 'test')
     })
   })
 
@@ -50,9 +49,9 @@ describe('Lex Helpers', () => {
         LexResponse.FULFILMENT_STATES.Failed
       )
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'Close')
-      expect(res.dialogAction).to.have.property(
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'Close')
+      expect(res.dialogAction).toHaveProperty(
         'fulfillmentState',
         LexResponse.FULFILMENT_STATES.Failed
       )
@@ -63,9 +62,9 @@ describe('Lex Helpers', () => {
         LexResponse.FULFILMENT_STATES.Fulfilled
       )
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'Close')
-      expect(res.dialogAction).to.have.property(
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'Close')
+      expect(res.dialogAction).toHaveProperty(
         'fulfillmentState',
         LexResponse.FULFILMENT_STATES.Fulfilled
       )
@@ -74,9 +73,9 @@ describe('Lex Helpers', () => {
     it('Should mark as close with fulfilled as default', () => {
       const res = new LexResponse(eventFactory()).asClose()
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'Close')
-      expect(res.dialogAction).to.have.property(
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'Close')
+      expect(res.dialogAction).toHaveProperty(
         'fulfillmentState',
         LexResponse.FULFILMENT_STATES.Fulfilled
       )
@@ -87,8 +86,8 @@ describe('Lex Helpers', () => {
         .asClose(LexResponse.FULFILMENT_STATES.Fulfilled)
         .end()
 
-      expect(res.dialogAction).to.have.property('type', 'Close')
-      expect(res.dialogAction).to.have.property(
+      expect(res.dialogAction).toHaveProperty('type', 'Close')
+      expect(res.dialogAction).toHaveProperty(
         'fulfillmentState',
         LexResponse.FULFILMENT_STATES.Fulfilled
       )
@@ -99,7 +98,7 @@ describe('Lex Helpers', () => {
         .asClose(LexResponse.FULFILMENT_STATES.Fulfilled)
         .end()
 
-      expect(res.dialogAction).to.not.have.property('intentName')
+      expect(res.dialogAction).not.toHaveProperty('intentName')
     })
 
     it('Should NOT have slots', () => {
@@ -107,7 +106,7 @@ describe('Lex Helpers', () => {
         .asClose(LexResponse.FULFILMENT_STATES.Fulfilled)
         .end()
 
-      expect(res.dialogAction).to.not.have.property('slots')
+      expect(res.dialogAction).not.toHaveProperty('slots')
     })
   })
 
@@ -115,20 +114,20 @@ describe('Lex Helpers', () => {
     it('Should mark it as confirm', () => {
       const res = new LexResponse(eventFactory()).asConfirmIntent()
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'ConfirmIntent')
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'ConfirmIntent')
     })
 
     it('Should have slots', () => {
       const res = new LexResponse(eventFactory()).asConfirmIntent().end()
 
-      expect(res.dialogAction).to.have.property('slots')
+      expect(res.dialogAction).toHaveProperty('slots')
     })
 
     it('Should have the intent name', () => {
       const res = new LexResponse(eventFactory()).asConfirmIntent().end()
 
-      expect(res.dialogAction).to.have.property('intentName')
+      expect(res.dialogAction).toHaveProperty('intentName')
     })
   })
 
@@ -136,20 +135,20 @@ describe('Lex Helpers', () => {
     it('Should mark it as delegate', () => {
       const res = new LexResponse(eventFactory()).asDelegate()
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'Delegate')
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'Delegate')
     })
 
     it('Should NOT include the intent Name', () => {
       const res = new LexResponse(eventFactory()).asDelegate().end()
 
-      expect(res.dialogAction).to.not.have.property('intentName')
+      expect(res.dialogAction).not.toHaveProperty('intentName')
     })
 
     it('Should include slots', () => {
       const res = new LexResponse(eventFactory()).asDelegate().end()
 
-      expect(res.dialogAction).to.have.property('slots')
+      expect(res.dialogAction).toHaveProperty('slots')
     })
   })
 
@@ -157,20 +156,20 @@ describe('Lex Helpers', () => {
     it('Should mark it as Elicit Intent', () => {
       const res = new LexResponse(eventFactory()).asElicitIntent()
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'ElicitIntent')
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'ElicitIntent')
     })
 
     it('Should NOT have the Intent Name', () => {
       const res = new LexResponse(eventFactory()).asElicitIntent().end()
 
-      expect(res.dialogAction).to.not.have.property('intentName')
+      expect(res.dialogAction).not.toHaveProperty('intentName')
     })
 
     it('Should NOT have slots', () => {
       const res = new LexResponse(eventFactory()).asElicitIntent().end()
 
-      expect(res.dialogAction).to.not.have.property('slots')
+      expect(res.dialogAction).not.toHaveProperty('slots')
     })
   })
 
@@ -179,21 +178,21 @@ describe('Lex Helpers', () => {
       const _slotName = 't3st'
       const res = new LexResponse(eventFactory()).asElicitSlot(_slotName)
 
-      expect(res).to.have.property('dialogAction')
-      expect(res.dialogAction).to.have.property('type', 'ElicitSlot')
-      expect(res.dialogAction).to.have.property('slotToElicit', _slotName)
+      expect(res).toHaveProperty('dialogAction')
+      expect(res.dialogAction).toHaveProperty('type', 'ElicitSlot')
+      expect(res.dialogAction).toHaveProperty('slotToElicit', _slotName)
     })
 
     it('Should include the intent name', () => {
       const res = new LexResponse(eventFactory()).asElicitSlot('t3st').end()
 
-      expect(res.dialogAction).to.have.property('intentName')
+      expect(res.dialogAction).toHaveProperty('intentName')
     })
 
     it('Should have slots', () => {
       const res = new LexResponse(eventFactory()).asElicitSlot('t3st').end()
 
-      expect(res.dialogAction).to.have.property('slots')
+      expect(res.dialogAction).toHaveProperty('slots')
     })
   })
 
@@ -201,16 +200,16 @@ describe('Lex Helpers', () => {
     it('Should take the slots from the current event', () => {
       const res = new LexResponse(eventFactory())
 
-      expect(res).to.have.property('slots')
-      expect(res.slots).to.have.property('test', 'test')
+      expect(res).toHaveProperty('slots')
+      expect(res.slots).toHaveProperty('test', 'test')
     })
 
     it('Should add a new slot', () => {
       const res = new LexResponse(eventFactory()).withSlot('test2', 'test2')
 
-      expect(res).to.have.property('slots')
-      expect(res.slots).to.have.property('test', 'test')
-      expect(res.slots).to.have.property('test2', 'test2')
+      expect(res).toHaveProperty('slots')
+      expect(res.slots).toHaveProperty('test', 'test')
+      expect(res.slots).toHaveProperty('test2', 'test2')
     })
 
     it('Should override a slot', () => {
@@ -218,9 +217,9 @@ describe('Lex Helpers', () => {
         .withSlot('test2', 'test2')
         .withSlot('test2', 'test2override')
 
-      expect(res).to.have.property('slots')
-      expect(res.slots).to.have.property('test', 'test')
-      expect(res.slots).to.have.property('test2', 'test2override')
+      expect(res).toHaveProperty('slots')
+      expect(res.slots).toHaveProperty('test', 'test')
+      expect(res.slots).toHaveProperty('test2', 'test2override')
     })
   })
 
@@ -231,12 +230,12 @@ describe('Lex Helpers', () => {
         'Hello!'
       )
 
-      expect(res).to.have.property('message')
-      expect(res.message).to.have.property(
+      expect(res).toHaveProperty('message')
+      expect(res.message).toHaveProperty(
         'contentType',
         LexResponse.MSG_CONTENT_TYPES.PlainText
       )
-      expect(res.message).to.have.property('content', 'Hello!')
+      expect(res.message).toHaveProperty('content', 'Hello!')
     })
 
     it('Should add a message of text with text by default', () => {
@@ -245,12 +244,12 @@ describe('Lex Helpers', () => {
         'Hello!'
       )
 
-      expect(res).to.have.property('message')
-      expect(res.message).to.have.property(
+      expect(res).toHaveProperty('message')
+      expect(res.message).toHaveProperty(
         'contentType',
         LexResponse.MSG_CONTENT_TYPES.PlainText
       )
-      expect(res.message).to.have.property('content', 'Hello!')
+      expect(res.message).toHaveProperty('content', 'Hello!')
     })
 
     it('Should be on the final json', () => {
@@ -258,23 +257,23 @@ describe('Lex Helpers', () => {
         .withMessage(LexResponse.MSG_CONTENT_TYPES.PlainText, 'Hello!')
         .end()
 
-      expect(res.dialogAction).to.have.property('message')
-      expect(res.dialogAction.message).to.have.property(
+      expect(res.dialogAction).toHaveProperty('message')
+      expect(res.dialogAction.message).toHaveProperty(
         'contentType',
         LexResponse.MSG_CONTENT_TYPES.PlainText
       )
-      expect(res.dialogAction.message).to.have.property('content', 'Hello!')
+      expect(res.dialogAction.message).toHaveProperty('content', 'Hello!')
     })
   })
 
   describe('ResponseCard', () => {
     it('Should add a Response Card', () => {
       const e = new LexResponse(eventFactory()).withResponseCard()
-      expect(e).to.have.property('responseCard')
-      expect(e.responseCard).to.have.property('version', 1)
-      expect(e.responseCard).to.have.property('genericAttachments')
-      expect(e.responseCard.genericAttachments).to.have.length(0)
-      expect(e.responseCard).to.have.property(
+      expect(e).toHaveProperty('responseCard')
+      expect(e.responseCard).toHaveProperty('version', 1)
+      expect(e.responseCard).toHaveProperty('genericAttachments')
+      expect(e.responseCard.genericAttachments).toHaveLength(0)
+      expect(e.responseCard).toHaveProperty(
         'contentType',
         'application/vnd.amazonaws.card.generic'
       )
@@ -282,11 +281,11 @@ describe('Lex Helpers', () => {
 
     it('Should output the Response Card', () => {
       const e = new LexResponse(eventFactory()).withResponseCard().end()
-      expect(e.dialogAction).to.have.property('responseCard')
-      expect(e.dialogAction.responseCard).to.have.property('version', 1)
-      expect(e.dialogAction.responseCard).to.have.property('genericAttachments')
-      expect(e.dialogAction.responseCard.genericAttachments).to.have.length(0)
-      expect(e.dialogAction.responseCard).to.have.property(
+      expect(e.dialogAction).toHaveProperty('responseCard')
+      expect(e.dialogAction.responseCard).toHaveProperty('version', 1)
+      expect(e.dialogAction.responseCard).toHaveProperty('genericAttachments')
+      expect(e.dialogAction.responseCard.genericAttachments).toHaveLength(0)
+      expect(e.dialogAction.responseCard).toHaveProperty(
         'contentType',
         'application/vnd.amazonaws.card.generic'
       )
@@ -298,8 +297,8 @@ describe('Lex Helpers', () => {
         attachment
       ])
 
-      expect(e.responseCard.genericAttachments).to.have.length(1)
-      expect(e.responseCard.genericAttachments[0]).to.have.property(
+      expect(e.responseCard.genericAttachments).toHaveLength(1)
+      expect(e.responseCard.genericAttachments[0]).toHaveProperty(
         'title',
         'test'
       )
@@ -311,8 +310,8 @@ describe('Lex Helpers', () => {
         attachment
       ])
 
-      expect(e.responseCard.genericAttachments).to.have.length(1)
-      expect(e.responseCard.genericAttachments[0]).to.have.property(
+      expect(e.responseCard.genericAttachments).toHaveLength(1)
+      expect(e.responseCard.genericAttachments[0]).toHaveProperty(
         'title',
         'test'
       )

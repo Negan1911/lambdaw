@@ -1,27 +1,26 @@
-const { expect } = require('chai')
 const GenericAttachment = require('./genericAttachments')
 
 describe('Generic Attachment Lex', () => {
   it('Should have a title', () => {
     const attachment = new GenericAttachment('test')
-    expect(attachment).to.have.property('title', 'test')
+    expect(attachment).toHaveProperty('title', 'test')
   })
 
   it('Should have a subtitle', () => {
     const attachment = new GenericAttachment('test').withSubTitle('subtitle')
-    expect(attachment).to.have.property('subTitle', 'subtitle')
+    expect(attachment).toHaveProperty('subTitle', 'subtitle')
   })
 
   it('Should have a imageUrl', () => {
     const url = 'http://url/'
     const attachment = new GenericAttachment('test').withImageUrl(url)
-    expect(attachment).to.have.property('imageUrl', url)
+    expect(attachment).toHaveProperty('imageUrl', url)
   })
 
   it('Should have a attachmentLinkUrl', () => {
     const url = 'http://url/'
     const attachment = new GenericAttachment('test').withAttachmentLinkUrl(url)
-    expect(attachment).to.have.property('attachmentLinkUrl', url)
+    expect(attachment).toHaveProperty('attachmentLinkUrl', url)
   })
 
   it('Should add buttons', () => {
@@ -29,11 +28,11 @@ describe('Generic Attachment Lex', () => {
       .withButton('test1title', 'test1value')
       .withButton('test2title', 'test2value')
 
-    expect(attachment.buttons).to.have.length(2)
-    expect(attachment.buttons[0]).to.have.property('text', 'test1title')
-    expect(attachment.buttons[0]).to.have.property('value', 'test1value')
-    expect(attachment.buttons[1]).to.have.property('text', 'test2title')
-    expect(attachment.buttons[1]).to.have.property('value', 'test2value')
+    expect(attachment.buttons).toHaveLength(2)
+    expect(attachment.buttons[0]).toHaveProperty('text', 'test1title')
+    expect(attachment.buttons[0]).toHaveProperty('value', 'test1value')
+    expect(attachment.buttons[1]).toHaveProperty('text', 'test2title')
+    expect(attachment.buttons[1]).toHaveProperty('value', 'test2value')
   })
 
   it('Should return everything', () => {
@@ -45,15 +44,15 @@ describe('Generic Attachment Lex', () => {
       .withAttachmentLinkUrl('http://att-url')
       .end()
 
-    expect(attachment).to.have.property('title', 'title')
-    expect(attachment).to.have.property('subTitle', 'subtitle')
-    expect(attachment).to.have.property('imageUrl', 'http://image-url')
-    expect(attachment).to.have.property('attachmentLinkUrl', 'http://att-url')
-    expect(attachment).to.have.property('buttons')
-    expect(attachment.buttons).to.have.length(2)
-    expect(attachment.buttons[0]).to.have.property('text', 'button1title')
-    expect(attachment.buttons[0]).to.have.property('value', 'button1value')
-    expect(attachment.buttons[1]).to.have.property('text', 'button2title')
-    expect(attachment.buttons[1]).to.have.property('value', 'button2value')
+    expect(attachment).toHaveProperty('title', 'title')
+    expect(attachment).toHaveProperty('subTitle', 'subtitle')
+    expect(attachment).toHaveProperty('imageUrl', 'http://image-url')
+    expect(attachment).toHaveProperty('attachmentLinkUrl', 'http://att-url')
+    expect(attachment).toHaveProperty('buttons')
+    expect(attachment.buttons).toHaveLength(2)
+    expect(attachment.buttons[0]).toHaveProperty('text', 'button1title')
+    expect(attachment.buttons[0]).toHaveProperty('value', 'button1value')
+    expect(attachment.buttons[1]).toHaveProperty('text', 'button2title')
+    expect(attachment.buttons[1]).toHaveProperty('value', 'button2value')
   })
 })
