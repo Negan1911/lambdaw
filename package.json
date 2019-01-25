@@ -1,13 +1,12 @@
 {
   "name": "lambdaw",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A Group of Helpers for Common AWS Lamdba uses Edit",
   "main": "index.js",
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
-    "doc": "docker -x *.spec.js -c Monokai src/**/*.js",
     "test": "jest",
     "codecov": "codecov",
     "precommit": "lint-staged"
@@ -36,13 +35,12 @@
   },
   "homepage": "https://github.com/Negan1911/lambda-ch#readme",
   "devDependencies": {
-    "codecov": "^3.0.1",
-    "docker": "^1.0.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-jest": "^21.15.1",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^22.4.3",
-    "prettier": "^1.12.1"
+    "codecov": "^3.1.0",
+    "eslint": "^5.12.1",
+    "eslint-plugin-jest": "^22.1.3",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.16.1"
   }
 }
